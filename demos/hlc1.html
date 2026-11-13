@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Homesteaders Home Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;700&family=Fira+Sans+Extra+Condensed:wght@500;600&family=Caveat:wght@500;600&display=swap">
+<style>
+/* Layout: the existing homepage, section for section, with June in the hero. When June knows the visitor, the hero and a two-column workspace (conversation + plan) replace the generic welcome. Colors and type measured on homesteaderslife.com. Single light look, one deep-blue workspace. */
+:root{
+  color-scheme:light;
+  --blue:#004990; --blue2:#2675C1; --ink:#282F3E; --gold:#EBB01C; --cream:#FAF7E5; --stone:#F3F3EB; --sky:#EAF2FC; --white:#FFFFFF;
+  --bg:#EAF2FC; --fg:#282F3E; --head:#004990; --muted:#586479; --line:#C9D8EA; --panel:#FFFFFF; --ai:#004990; --me:#004990; --me-fg:#FFFFFF; --ok:#1E7A4C;
+  --display:"Fira Sans Extra Condensed","Fira Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --sans:"Fira Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+}
+.navy{--bg:#00274F; --fg:#EAF2FC; --head:#FFFFFF; --muted:#9DB6D3; --line:#1E4A7A; --panel:#063664; --ai:#9CC7F2; --me:#2675C1; --ok:#7FE0AE}
+.cream{--bg:#FAF7E5; --line:#E4DEBD}
+.white{--bg:#FFFFFF; --line:#DDE5EE}
+.bluebar{--bg:#004990; --fg:#EAF2FC; --head:#EAF2FC; --muted:#C5DAF2; --line:#2A69A8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#EAF2FC;color:#282F3E;font:300 18px/1.55 var(--sans);overflow-x:hidden}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+b,strong{font-weight:500}
+a{color:var(--blue2)}
+
+.label{background:#282F3E;color:#F3F3EB;font-size:13px;font-weight:400}
+.label .in{padding-block:7px;display:flex;flex-wrap:wrap;gap:4px 18px;justify-content:space-between;align-items:center}
+.label b{color:#EBB01C}
+.label button{background:none;border:1px solid #6B7386;color:#F3F3EB;border-radius:999px;padding:3px 12px;cursor:pointer;font-size:12.5px}
+.in{width:100%;max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{background:var(--bg);color:var(--fg);position:relative}
+.band > .in{padding-block:clamp(40px,6vw,76px)}
+header.site{background:#FFFFFF;border-bottom:1px solid #DDE5EE}
+header.site .in{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;justify-content:space-between;padding-block:14px}
+.brand{font-family:var(--display);font-weight:600;font-size:26px;color:var(--blue);line-height:1}
+.brand small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--muted);letter-spacing:.04em}
+nav{display:flex;flex-wrap:wrap;gap:4px 20px}
+nav a{font-family:var(--display);font-weight:500;font-size:19px;color:var(--blue);text-decoration:none}
+nav a:hover{text-decoration:underline}
+
+h1,h2,h3{font-family:var(--display);font-weight:500;color:var(--head);line-height:1.06;margin:0;text-wrap:balance}
+h1{font-size:clamp(42px,5.6vw,64px)}
+h2{font-size:clamp(32px,4.2vw,44px)}
+h3{font-size:26px}
+p{margin:0;max-width:62ch}
+.eyebrow{font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:.07em;color:var(--head);margin:0}
+.navy .eyebrow{color:var(--gold)}
+.muted{color:var(--muted)}
+.small{font-size:15px}
+.stack{display:flex;flex-direction:column;gap:18px}
+.btn{background:var(--gold);color:#282F3E;border:0;padding:12px 24px;font-family:var(--display);font-weight:500;font-size:22px;cursor:pointer;line-height:1.1;text-decoration:none;display:inline-block}
+.btn:hover{filter:brightness(1.06)}
+.textbtn{background:none;border:0;padding:0;color:var(--blue2);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-weight:400;text-align:left}
+
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,64px);align-items:center}
+@media (max-width:860px){.hero{grid-template-columns:minmax(0,1fr)}}
+.junecard{background:var(--white);box-shadow:0 26px 56px rgba(0,39,79,.2),0 2px 6px rgba(0,39,79,.1);padding:24px;display:flex;flex-direction:column;gap:14px;border-top:6px solid var(--gold)}
+.junecard .who{font-size:12.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.junecard .q{font-family:var(--display);font-weight:500;font-size:clamp(28px,3.4vw,36px);line-height:1.08;color:var(--blue)}
+.door{display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;background:var(--sky);border:0;border-left:6px solid var(--blue);padding:13px 16px;cursor:pointer;font-family:var(--display);font-weight:500;font-size:24px;line-height:1.1;color:var(--blue);transition:transform .15s ease,border-color .15s ease}
+.door:hover{border-left-color:var(--gold);transform:translateX(4px)}
+.door span:last-child{color:var(--gold);font-family:var(--sans)}
+.junecard form{display:flex;gap:8px}
+.junecard input{flex:1;min-width:0;border:2px solid var(--line);border-radius:999px;padding:10px 16px;background:#FFFFFF;font-size:17px}
+.junecard .btn{font-size:20px;padding:10px 18px}
+.since{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.since li{font-size:16px;padding-left:22px;position:relative;font-weight:400}
+.since li::before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+
+/* workspace */
+#june[hidden]{display:none!important}
+.navy::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 30% 0%,rgba(235,176,28,.2),rgba(235,176,28,0) 70%);pointer-events:none}
+.work{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:clamp(24px,4vw,56px);align-items:start;position:relative}
+@media (max-width:900px){.work{grid-template-columns:minmax(0,1fr)}}
+.work > *{min-width:0}
+.chat{display:flex;flex-direction:column;gap:12px;min-width:0}
+.msg{max-width:90%;display:flex;flex-direction:column;gap:4px}
+.anim{animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg .w{font-size:12.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ai)}
+.msg .b{border-radius:4px 20px 20px 20px;padding:12px 17px;font-size:18.5px;line-height:1.42;background:var(--panel);border:1px solid var(--line);overflow-wrap:anywhere;white-space:pre-line}
+.msg.d .w{color:var(--gold)}
+.msg.d .b{background:var(--gold);color:#282F3E;border-color:var(--gold);font-weight:400}
+.msg.m{align-self:flex-end;align-items:flex-end}
+.msg.m .b{background:var(--me);color:var(--me-fg);border-color:var(--me);border-radius:20px 4px 20px 20px}
+.dots{display:inline-flex;gap:5px;padding:5px 0}
+.dots i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.4;animation:bl 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,100%{opacity:.2}50%{opacity:.9}}
+.sep{font-family:var(--display);font-size:22px;font-weight:500;color:var(--gold);padding:14px 0 2px;border-top:1px solid var(--line);margin-top:8px}
+.sent{border:1px dashed var(--line);border-radius:12px;padding:10px 14px;font-size:16px;max-width:90%;font-weight:400}
+.sent small{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:2px}
+.reply{align-self:flex-end;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;max-width:100%}
+.reply form{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.reply input,.talk input{min-width:0;border:2px solid var(--gold);background:var(--panel);color:var(--fg);border-radius:999px;padding:10px 18px;font-size:18px}
+.reply input{width:min(280px,66vw)}
+.pick{background:transparent;border:2px solid var(--gold);color:var(--fg);border-radius:999px;padding:9px 18px;cursor:pointer;font-weight:400;font-size:17px;text-align:left}
+.pick:hover{background:var(--gold);color:#282F3E}
+.big{font-family:var(--display);font-weight:500;font-size:clamp(30px,4.2vw,44px);line-height:1.08;color:var(--head);margin:6px 0;text-wrap:balance}
+.draft{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--gold);padding:12px 16px;font-size:17px;max-width:90%;white-space:pre-line;font-weight:400}
+.draft small,.vmini small{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:4px}
+.vmini{background:#FFFFFF;color:#282F3E;border-radius:18px;padding:14px 16px;max-width:360px;display:flex;flex-direction:column;gap:8px;box-shadow:0 14px 30px rgba(0,10,30,.35);font-weight:400}
+.vmini small{color:#586479}
+.wave{display:flex;align-items:center;gap:3px;height:28px}
+.wave i{flex:1;border-radius:2px;background:#004990}
+.paper{font-family:var(--hand);font-size:clamp(27px,4vw,36px);line-height:44px;color:#1F3A7A;width:min(410px,100%);padding:10px 24px 10px 46px;transform:rotate(-1.8deg);
+  background:repeating-linear-gradient(#FFFDF2 0 43px,#BFD3EE 43px 44px);box-shadow:0 22px 50px rgba(0,10,30,.45),0 2px 5px rgba(0,10,30,.25);position:relative;border-radius:2px;margin:10px 0 14px 6px}
+.paper.anim{animation:drop .9s cubic-bezier(.2,1.2,.3,1)}
+@keyframes drop{from{opacity:0;transform:translateY(-30px) rotate(-7deg)}to{opacity:1;transform:rotate(-1.8deg)}}
+.paper::before{content:"";position:absolute;left:32px;top:0;bottom:0;width:1px;background:#EFA0A0}
+.paper span{display:block;min-height:44px;overflow-wrap:anywhere}
+.paper .to{font-size:.74em;color:#58709F}
+.paper .sig{text-align:right;font-size:.78em;color:#3C5590}
+details.hist{border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+details.hist summary{cursor:pointer;font-weight:500;color:var(--muted)}
+details.hist .chat{margin-top:12px}
+.talk{display:flex;gap:8px;margin-top:6px}
+.talk input{flex:1}
+.idle{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px;font-weight:400}
+.demo{align-self:flex-start;background:transparent;border:2px dashed var(--gold);color:var(--fg);padding:10px 18px;cursor:pointer;font-weight:500;border-radius:8px}
+.demo small{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--gold)}
+
+.plan{background:var(--panel);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:4px;position:sticky;top:12px}
+.plan h3{color:var(--head);margin-bottom:8px}
+.plan ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.plan li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:16px;font-weight:400}
+.plan li .mk{width:18px;height:18px;border-radius:50%;border:2px solid var(--muted);margin-top:3px}
+.plan li.done .mk{background:var(--ok);border-color:var(--ok)}
+.plan li.next .mk{border-color:var(--gold);background:var(--gold)}
+.plan li.wait .mk{border-color:var(--ai)}
+.plan li.done .t{color:var(--muted)}
+.plan li .n{display:block;font-size:13.5px;color:var(--muted)}
+.plan li.next .n{color:var(--gold)}
+.plan .count{font-size:14px;color:var(--muted);font-weight:400}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.cards > div{background:var(--white);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0;border-top:6px solid var(--blue)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.stats div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.stats .n{font-family:var(--display);font-weight:600;font-size:62px;line-height:1;color:#FFFFFF;font-variant-numeric:tabular-nums}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.three > div{border-top:6px solid var(--gold);padding-top:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.src{font-size:14px;color:var(--muted);font-weight:400}
+footer .in{padding-block:28px}
+</style>
+
+<header class="site"><div class="in">
+  <div class="brand">Homesteaders Life Company<small>HOME PAGE CONCEPT</small></div>
+  <nav aria-label="Sections">
+    <a href="#pros">For Funeral Professionals</a>
+    <a href="#owners">For Policy Owners</a>
+    <a href="#planning">For End-of-Life Planning</a>
+    <a href="#different">About Us</a>
+  </nav>
+</div></header>
+
+<!-- HERO -->
+<section class="band" id="top"><div class="in hero">
+  <div class="stack">
+    <p class="eyebrow" id="h-eyebrow">Providing Preneed Insurance</p>
+    <h1 id="h-title">Helping people design a better farewell.</h1>
+    <p id="h-text">Homesteaders works with funeral providers across the country to support families through the hardest days of their lives. Now there is someone here to talk to the moment you arrive.</p>
+    <p class="small muted" id="h-sub">June is an AI. Dana is a person. You will always know which of them is talking.</p>
+  </div>
+  <div class="junecard" id="junecard"></div>
+</div></section>
+
+<!-- JUNE WORKSPACE -->
+<section class="band navy" id="june" hidden><div class="in"><div class="work">
+  <div class="stack">
+    <p class="eyebrow" id="w-eyebrow">With June</p>
+    <div class="chat" id="chat" aria-live="polite"></div>
+    <form class="talk" id="talk" autocomplete="off">
+      <input id="talkin" type="text" maxlength="400" placeholder="Or say anything to June" aria-label="Say anything to June">
+      <button class="btn" type="submit">Send</button>
+    </form>
+    <div class="idle" id="idle" hidden></div>
+  </div>
+  <aside class="plan" id="plan" hidden></aside>
+</div></div></section>
+
+<!-- EXISTING CONTENT -->
+<section class="band white"><div class="in"><div class="stack">
+  <h2>Your preneed provider.</h2>
+  <div class="cards">
+    <div id="pros"><h3>For funeral professionals.</h3><p>Preneed funding, marketing support, training and lending for funeral homes and their agents.</p><p class="small muted">Unchanged in this concept. Families June has talked to arrive already knowing what they want.</p></div>
+    <div id="owners"><h3>For policy owners.</h3><p>Forms, payments and answers for people who already hold a Homesteaders policy.</p><button type="button" class="textbtn" data-open="ask">June knows your policy. Ask her instead of finding the form.</button></div>
+    <div id="planning"><h3>For end-of-life planning.</h3><p>Funeral planning and estate planning, so the people you love are not left guessing.</p><button type="button" class="textbtn" data-open="plan">Start with one question from June.</button></div>
+  </div>
+</div></div></section>
+
+<section class="band bluebar" id="different"><div class="in"><div class="stack">
+  <h2>What makes Homesteaders different?</h2>
+  <div class="stats">
+    <div><span class="n">120</span><span>years in business</span></div>
+    <div><span class="n">A-</span><span>(Excellent) financial strength rating</span></div>
+    <div><span class="n">91%</span><span>of income redistributed to funeral home customers, agents and policy owners</span></div>
+    <div><span class="n">99%</span><span>customer satisfaction rating</span></div>
+  </div>
+  <p class="src">Figures as shown on homesteaderslife.com on 12 November 2026. Not independently checked.</p>
+</div></div></section>
+
+<section class="band cream"><div class="in"><div class="stack">
+  <h2>Learn more about Homesteaders.</h2>
+  <div class="cards">
+    <div><h3>Personal Expressions Guide</h3><p>The guide for recording your wishes. In this concept June fills it in with you, one small question at a time, and hands it to your family on the day.</p></div>
+    <div><h3>Preneed Motivators</h3><p class="muted">On the current site.</p></div>
+    <div><h3>Annual Report</h3><p class="muted">On the current site.</p></div>
+  </div>
+</div></div></section>
+
+
+<script>
+(function(){
+  var FAST = !!window.__fast || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var $ = function(id){return document.getElementById(id)};
+  var esc = function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var cap = function(s){return s.charAt(0).toUpperCase()+s.slice(1)};
+  var DAY = 86400000, KEY = 'june-home-v1';
+  var run = 0, busyStage = false, touched = false;
+  function wait(ms, id){return new Promise(function(res,rej){setTimeout(function(){ id===run?res():rej('stop') }, FAST?0:ms)})}
+  function into(el){ if(el && el.scrollIntoView) el.scrollIntoView({block:'nearest', behavior: FAST?'auto':'smooth'}) }
+
+  var RELS = {
+    wife:{label:'My wife',she:'she',her:'her',pos:'her',fb:'Ellen'},
+    husband:{label:'My husband',she:'he',her:'him',pos:'his',fb:'Robert'},
+    mom:{label:'My mom',she:'she',her:'her',pos:'her',fb:'Mom'},
+    dad:{label:'My dad',she:'he',her:'him',pos:'his',fb:'Dad'}
+  };
+  var S = null; // {v, me, rel, W, start, skip, stage, lastDay, last, plan, ch, log, saved}
+  function fresh(){ return {v:1, me:'', rel:'wife', W:'', start:Date.now(), skip:0, stage:0, lastDay:0, last:'', plan:{}, ch:{}, log:[], saved:0} }
+  function fill(t){
+    if(!S) return t;
+    var r = RELS[S.rel]||RELS.wife;
+    return t.replace(/\{me\}/g,S.me).replace(/\{W\}/g,S.W)
+      .replace(/\{She\}/g,cap(r.she)).replace(/\{she\}/g,r.she).replace(/\{her\}/g,r.her)
+      .replace(/\{Pos\}/g,cap(r.pos)).replace(/\{pos\}/g,r.pos);
+  }
+  function today(){ return Math.floor((Date.now()-S.start)/DAY) + S.skip }
+  function dateOf(d, short){ return new Date(S.start + d*DAY).toLocaleDateString(undefined, short?{weekday:'short',month:'short',day:'numeric'}:{weekday:'long',month:'long',day:'numeric'}) }
+
+  // ---------- storage: browser first, private per-viewer store when available ----------
+  var dbDoc = null, chain = Promise.resolve();
+  function readLocal(){ try{ var s=localStorage.getItem(KEY); return s?JSON.parse(s):null }catch(e){ return null } }
+  function save(){
+    if(!S) return; S.saved = Date.now(); var json = JSON.stringify(S);
+    try{ localStorage.setItem(KEY, json) }catch(e){}
+    if(dbDoc){ var at=S.saved; chain = chain.then(function(){ return dbDoc.set({json:json, saved:at}) }).catch(function(){}) }
+  }
+  function clearStore(){
+    try{ localStorage.removeItem(KEY) }catch(e){}
+    if(dbDoc){ chain = chain.then(function(){ return dbDoc.set({json:'', saved:Date.now()}) }).catch(function(){}) }
+  }
+  function timeout(ms){ return new Promise(function(r){ setTimeout(function(){r(null)}, ms) }) }
+  async function initRemote(){
+    try{
+      if(!(window.claude && window.claude.use)) return;
+      var got = await Promise.race([Promise.all([window.claude.use('db'), window.claude.use('user')]), timeout(4000)]);
+      if(!got || !got[0] || !got[1]) return;
+      var id = await got[1].id(); if(!id) return;
+      dbDoc = got[0].doc('data/users/'+id+'/june');
+      var snap = await Promise.race([dbDoc.get(), timeout(4000)]);
+      var remote = null;
+      if(snap && snap.exists){ var d=snap.data(); if(d && d.json){ try{ remote=JSON.parse(d.json) }catch(e){} } }
+      if(remote && remote.stage>=1 && (!S || (remote.saved||0) > (S.saved||0)) && !touched){ S = remote; try{ localStorage.setItem(KEY, JSON.stringify(S)) }catch(e){} renderHero(); }
+      else if(S && S.stage>=1 && (!remote || (S.saved||0) > (remote.saved||0))) save();
+    }catch(e){}
+  }
+
+  // ---------- plan ----------
+  var PLAN = [
+    ['note','{W}\'s note to you'],['home','Funeral home, chosen and paid'],['tell','Tell the people who should hear it from you'],
+    ['service','{W}\'s service'],['certs','Death certificates'],['claim','The claim on {W}\'s policy'],['ss','Social Security'],
+    ['bank','The bank'],['subs','Subscriptions and {pos} phone'],['you','You'],['things','{W}\'s things'],['own','Your own note']
+  ];
+  var SLABEL = {done:'Done', next:'Yours, when you are ready', wait:'In hand', later:'It can wait. June is holding it.'};
+  function setPlan(id, s, note){ S.plan[id] = {s:s, n:note?fill(note):''}; renderPlan() }
+  function renderPlan(){
+    var p=$('plan'); if(!S || !Object.keys(S.plan).length){ p.hidden=true; return }
+    var done=0, h='';
+    PLAN.forEach(function(it){ var st=S.plan[it[0]]||{s:'later',n:''}; if(st.s==='done') done++;
+      h+='<li class="'+st.s+'"><span class="mk" aria-hidden="true"></span><span><span class="t">'+esc(fill(it[1]))+'</span><span class="n">'+esc(st.n||SLABEL[st.s])+'</span></span></li>' });
+    p.innerHTML='<h3>'+esc(fill('The plan for {W}'))+'</h3><span class="count">'+done+' of '+PLAN.length+' done</span><ol>'+h+'</ol>';
+    p.hidden=false;
+  }
+
+  // ---------- rendering log items ----------
+  var WAVE=[6,12,20,14,24,10,18,26,12,8,16,22,10,6];
+  function node(it, anim){
+    var d=document.createElement('div'), a=anim?' anim':'';
+    if(it.k==='j'||it.k==='d'||it.k==='m'){ d.className='msg '+it.k+a; d.innerHTML=(it.k==='m'?'':'<span class="w">'+(it.k==='j'?'June · AI':'Dana · person')+'</span>')+'<div class="b">'+esc(it.t)+'</div>' }
+    else if(it.k==='sep'){ d.className='sep'+a; d.textContent=it.t }
+    else if(it.k==='sent'){ d.className='sent'+a; d.innerHTML='<small>'+esc(it.w)+'</small>'+esc(it.t) }
+    else if(it.k==='note'){ d.className='paper'+a; d.innerHTML=it.l.map(function(l){return '<span class="'+(l[1]||'')+'">'+esc(l[0])+'</span>'}).join('') }
+    else if(it.k==='draft'){ d.className='draft'+a; d.innerHTML='<small>'+esc(it.w)+'</small>'+esc(it.t) }
+    else if(it.k==='vm'){ d.className='vmini'+a; d.innerHTML='<small>'+esc(it.w)+'</small><div class="wave">'+WAVE.map(function(h){return '<i style="height:'+h+'px"></i>'}).join('')+'</div><span>'+esc(it.t)+'</span>' }
+    else if(it.k==='big'){ d.className='big'+a; d.textContent=it.t }
+    return d;
+  }
+
+  // ---------- stage context ----------
+  function ctx(id){
+    var box=$('chat'), buf=[];
+    function put(it){ buf.push(it); var n=node(it,true); box.appendChild(n); into(n); return n }
+    var c = {
+      buf:buf,
+      j: async function(t){ return c._say('j',t) }, d: async function(t){ return c._say('d',t) },
+      _say: async function(k,t){ t=fill(t);
+        var n=node({k:k,t:''},true); n.querySelector('.b').innerHTML='<span class="dots"><i></i><i></i><i></i></span>'; box.appendChild(n); into(n);
+        await wait(Math.min(2400, 750+t.length*13), id); n.remove(); put({k:k,t:t}); await wait(1000, id) },
+      sep: function(t){ put({k:'sep',t:t}) },
+      sent: async function(day, t){ put({k:'sent', w:'June wrote to you · by text · '+dateOf(day,true)+', 8:05 a.m.', t:fill(t)}); await wait(900,id) },
+      note: async function(lines){ put({k:'note', l:lines.map(function(l){return [fill(l[0]), l[1]||'']})}); await wait(3800,id) },
+      draft: async function(w,t){ put({k:'draft', w:w, t:fill(t)}); await wait(1500,id) },
+      vm: async function(w,t){ put({k:'vm', w:fill(w), t:fill(t)}); await wait(2200,id) },
+      big: function(t){ put({k:'big', t:fill(t)}) },
+      pick: function(opts){ return new Promise(function(res,rej){
+        var r=document.createElement('div'); r.className='reply anim';
+        opts.forEach(function(o,i){ var b=document.createElement('button'); b.type='button'; b.className='pick'; b.textContent=fill(o);
+          b.onclick=function(){ if(id!==run) return rej('stop'); touched=true; r.remove(); put({k:'m',t:fill(o)}); setTimeout(function(){res(i)}, FAST?0:450) }; r.appendChild(b) });
+        box.appendChild(r); into(r) }) },
+      text: function(ph, label, fb){ return new Promise(function(res,rej){
+        var r=document.createElement('div'); r.className='reply anim';
+        r.innerHTML='<form autocomplete="off"><input type="text" maxlength="50" placeholder="'+esc(ph)+'" aria-label="'+esc(ph)+'"><button class="btn" type="submit">'+esc(label)+'</button></form>';
+        box.appendChild(r); into(r); var inp=r.querySelector('input'); if(!FAST) inp.focus({preventScroll:true});
+        r.querySelector('form').addEventListener('submit',function(e){ e.preventDefault(); if(id!==run) return rej('stop'); touched=true;
+          var v=inp.value.trim().replace(/\s+/g,' ')||fb; r.remove(); put({k:'m',t:v}); setTimeout(function(){res(v)}, FAST?0:450) }) }) }
+    };
+    return c;
+  }
+
+  // ---------- the story ----------
+  var STAGES = [
+    {day:0, run: async function(c){
+      await c.j('I\'m so sorry. I\'m here, and there is no rush. Who did you lose?');
+      var keys=['wife','husband','mom','dad']; S.rel = keys[await c.pick(keys.map(function(k){return RELS[k].label}))];
+      await c.j('What was {pos} name?'); S.W = cap(await c.text('First name','Tell June',RELS[S.rel].fb));
+      await c.j('And what should I call you?'); S.me = cap(await c.text('Your first name','That\'s me','David'));
+      await c.j('Thank you, {me}. Let me look before I ask you anything else.');
+      await c.j('{W} is one of ours. Seven years ago {she} sat with me, one small question at a time, and decided most of this week so that you would not have to.');
+      await c.j('Before anything else. {She} left you this.');
+      await c.note([['For {me}','to'],['Play Moon River.'],['Nobody wears black.'],['Don\'t fuss over me.'],['{W}, seven years ago','sig']]);
+      setPlan('note','done','Read tonight'); setPlan('home','done','{W} chose Riverside Chapel and paid ahead');
+      await c.j('The funeral home is chosen and paid for. I\'ve let Riverside Chapel know. They expect you tomorrow, not tonight.');
+      ['service','certs','claim','ss','bank','subs','you','things','own'].forEach(function(k){ S.plan[k]={s:'later',n:''} }); setPlan('tell','next');
+      await c.j('I\'ve started a plan for the weeks ahead. It is next to this conversation. You don\'t have to read it tonight. Most of it is mine and Dana\'s to do.');
+      await c.j('One thing tonight is yours: telling the people who should hear it from you. Would it help if I wrote the first words?');
+      if(await c.pick(['Yes, write it for me','I\'ll find my own words'])===0){
+        await c.draft('A draft. Change anything.','{W} died today. I wanted you to hear it from me. I don\'t know yet when the service will be. I\'ll call when I can talk.');
+        await c.j('It\'s saved in your plan for when you need it.');
+      } else await c.j('Of course. Yours will be better than mine.');
+      await c.j('That is all for tonight. I\'m an AI, so I don\'t sleep. If it\'s 3 a.m. and you want to talk, I\'m here. Dana is a person, and she will call you tomorrow at 10 unless you tell me not to.');
+      await c.j('And {me}: when you come back, I\'ll know you. We pick up where we stopped.');
+      S.last='I gave you {W}\'s note, and we agreed tonight was only for calling family';
+    }},
+    {day:1, since:['Dana spoke with Riverside Chapel','Two times are open for {W}\'s service'], run: async function(c){
+      await c.sent(1,'Good morning, {me}. No need to reply. Dana talked to Riverside Chapel. Two times are open for {W}\'s service. They will keep until you are ready.');
+      await c.j('Welcome back, {me}. Did you get any sleep?');
+      if(await c.pick(['A little','Not really'])===0) await c.j('A little counts.'); else await c.j('That is normal this week, and I won\'t pretend otherwise. Dana knows a few things that help, whenever you want them.');
+      await c.j('Did you reach the people you wanted to tell?');
+      if(await c.pick(['Yes','Not all of them'])===0){ setPlan('tell','done'); await c.j('That was the hardest call on the list, and it\'s done.') }
+      else { S.ch.tell=1; setPlan('tell','next','Still one or two people to tell'); await c.j('Then it stays on the list. I\'ll ask once more next time, and gently.') }
+      var A=dateOf(3)+' at 11', B=dateOf(5)+' at 2';
+      await c.j('The chapel can hold {W}\'s service on '+A+', or on '+B+'. {She} asked for Moon River and no black. Which feels right?');
+      var p=await c.pick([A,B,'Ask Dana to call me about it']);
+      if(p<2){ S.ch.service=[A,B][p]; setPlan('service','wait','Confirmed for '+S.ch.service); await c.d('It\'s Dana. I\'m a person. I\'ve confirmed '+S.ch.service+' with the chapel, and I\'ll be there myself. You won\'t carry any paperwork in.') }
+      else { S.ch.service=''; setPlan('service','wait','Dana is arranging it with you'); await c.d('It\'s Dana. I\'m a person. I\'ll call you in ten minutes and we\'ll choose together. I\'ve read everything, so you don\'t need to explain.') }
+      setPlan('certs','wait','Ten ordered through the chapel');
+      await c.j('Dana also asked the chapel for ten death certificates. Nobody tells you this, but you will need more than you think. They take a few days.');
+      await c.j('That\'s everything for today. I\'ll write when the certificates are in.');
+      S.last='we set up {W}\'s service';
+    }},
+    {day:7, since:['The death certificates arrived','The claim on {W}\'s policy is paid','The service is behind you'], run: async function(c, gap){
+      await c.sent(3,'The certificates are at the chapel and Dana has them. Nothing for you to do.');
+      await c.sent(5,'The claim on {W}\'s policy is paid, straight to the chapel. You won\'t see a bill or a form.');
+      setPlan('certs','done','Ten, held by Dana'); setPlan('claim','done','Paid to the chapel. Nothing to sign.'); setPlan('service','done',S.ch.service?('Held '+S.ch.service):'Held');
+      await c.j('Welcome back, {me}. It has been '+gap+' days. The service is behind you. How was it?');
+      var p=await c.pick(['It was right','It was hard','Both']);
+      await c.j(['I\'m glad. {She} planned it to be.','Of course it was. You did it anyway.','Both is the honest answer. {She} planned it, and you carried it.'][p]);
+      if(S.ch.tell){ await c.j('Last time there were still people to tell. Is that done?');
+        if(await c.pick(['Yes, everyone knows','Still one left'])===0){ S.ch.tell=0; setPlan('tell','done'); await c.j('Good. I\'ll take it off the list.') } else await c.j('Then I\'ll leave it where it is. No one is counting.') }
+      await c.j('One thing this week. The funeral home reported {W}\'s death to Social Security. There may be a survivor benefit for you, and that takes one phone call. They ask for three things, and I already hold two of them.');
+      if(await c.pick(['Book the call for me','Not this week'])===0){ S.ch.ss='booked'; setPlan('ss','wait','Call booked for '+dateOf(10)+' at 10'); await c.j('Booked for '+dateOf(10)+' at 10. The night before, I\'ll put the three things on your phone. Dana can sit in on the call if you want her.') }
+      else { S.ch.ss='later'; setPlan('ss','later','You said not this week. June will ask again.'); await c.j('Then not this week. I\'ll hold it and ask again next time. Nothing is lost by waiting a little.') }
+      S.last='we talked about the service and about Social Security';
+    }},
+    {day:14, since:['A letter for {W}\'s bank is drafted','June found eleven recurring charges in {W}\'s name'], run: async function(c){
+      if(S.ch.ss==='booked') await c.sent(9,'Tomorrow at 10: Social Security. The three things they ask for are attached. Dana will be on the line with you.');
+      else await c.sent(10,'Thinking of you today, {me}. No reply needed.');
+      await c.sent(12,'I\'ve drafted the letter {W}\'s bank will want. It\'s ready when you are.');
+      await c.j('Welcome back, {me}.');
+      if(S.ch.ss==='later'){ await c.j('Last week you said not yet to the Social Security call. Is this week better?');
+        if(await c.pick(['Yes, book it','Still not yet'])===0){ S.ch.ss='booked'; setPlan('ss','wait','Call booked for '+dateOf(17)+' at 10'); await c.j('Booked for '+dateOf(17)+' at 10. Dana will be on the line.') }
+        else await c.j('Then it waits. I\'ll ask once more in two weeks, and after that only if you bring it up.') }
+      else { setPlan('ss','done','Call made. Dana was on the line.'); await c.j('The Social Security call is done. Dana says you did well.') }
+      await c.j('The bank letter is ready. It closes nothing. It tells them, and asks what they need. Shall I send it to you to sign?');
+      if(await c.pick(['Send it to me','Let me read it first'])===0){ setPlan('bank','wait','Letter sent for your signature'); await c.j('On its way. One signature, and I\'ll handle what comes back.') }
+      else { setPlan('bank','next','Letter ready for you to read'); await c.j('It\'s in your plan. Read it when you have the patience for it.') }
+      await c.j('I also found eleven recurring charges in {W}\'s name. Nine are simple, and I\'ll cancel them when you say so. One I wanted to ask you about first: {pos} phone line.');
+      if(await c.pick(['Keep it a while longer','Close it'])===0) await c.j('Good. Then {pos} voicemail greeting stays, and you can still call it. I\'ve saved a copy as well, so you never lose {pos} voice.');
+      else await c.j('Before I do: I\'ve saved {pos} voicemail greeting for you. You will always have {pos} voice.');
+      await c.vm('{W} · Voicemail greeting · 0:09','Hi, you\'ve reached {W}. Leave me a message and I\'ll call you back.');
+      setPlan('subs','done','Nine cancelled. {Pos} voice is saved.');
+      S.last='we dealt with the bank, the subscriptions and {W}\'s phone';
+    }},
+    {day:30, since:['No paperwork is waiting on you','June wrote once, to say she was thinking of you'], run: async function(c){
+      await c.sent(21,'Three weeks today. No paperwork. Just thinking of you and {W}.');
+      await c.j('Welcome back, {me}. It has been a month. I\'m not going to ask about paperwork.');
+      await c.j('How are you eating?');
+      var p=await c.pick(['Fine','Not much','I\'d rather not talk about that']);
+      if(p===0) await c.j('Good. That matters more than the bank letter.');
+      else if(p===2) await c.j('Then we won\'t. I\'ll be here when you do.');
+      else { await c.j('That is common, and it is worth saying out loud to someone. I\'m an AI, so this one belongs to Dana. May she call you?');
+        if(await c.pick(['Yes','Not yet'])===0) await c.d('It\'s Dana. I\'m a person. I\'ll call this afternoon. We don\'t have to talk about forms at all.'); else await c.j('Not yet, then. The offer doesn\'t expire.') }
+      setPlan('you','wait','June checks in once a month. Dana is one message away.');
+      await c.j('About {W}\'s things. People will tell you there is a right time. There isn\'t. I\'ll ask once, in spring, and not before.');
+      setPlan('things','later','No deadline. June will ask once, in spring.');
+      if(S.plan.bank && S.plan.bank.s!=='done') setPlan('bank','done','Signed and answered');
+      await c.j('Everything on the plan that had a deadline is done, {me}. From here I\'ll write once a month, and you can write to me any time.');
+      S.last='the paperwork was finished, and we agreed I would write once a month';
+    }},
+    {day:365, since:['June has written to you once a month','Tomorrow\'s note: someone saying {W}\'s name'], run: async function(c){
+      await c.sent(180,'Six months today. No reply needed.');
+      await c.sent(364,'Tomorrow is a year. I didn\'t want it to pass without someone saying {W}\'s name.');
+      await c.j('Welcome back, {me}. A year today.');
+      await c.j('{W} answered a question for me once, and it made the worst week of your life a little easier. When you are ready, and only then: is there a song you would want played?');
+      if(await c.pick(['Yes, there is','Not today'])===1){ await c.j('Then not today. I\'ll ask again in a year, and not before.'); S.last='I asked about a song and you said not today'; return }
+      var song=await c.text('Your song','Write it down','Moon River');
+      await c.j('Written down, in your words. Who should I hand it to, on the day?');
+      var to=cap(await c.text('Their first name','That\'s who','Sarah'));
+      await c.note([['For '+to,'to'],['Play '+song+'.'],['{me}, '+new Date(S.start+365*DAY).toLocaleDateString(undefined,{month:'long',year:'numeric'}),'sig']]);
+      S.ch.own={song:song,to:to}; setPlan('own','done','For '+to+'. Kept by June.');
+      await c.j('Kept. On the day, '+to+' sees this before anything else, the way you did.');
+      c.big('One policy became a family.');
+      S.last='you wrote your own note';
+    }}
+  ];
+
+  // ---------- flow ----------
+  function renderHero(){
+    var known = S && S.stage>=1, card=$('junecard');
+    if(!known){
+      $('h-eyebrow').textContent='Providing Preneed Insurance';
+      $('h-title').textContent='Helping people design a better farewell.';
+      $('h-text').textContent='Homesteaders works with funeral providers across the country to support families through the hardest days of their lives. Now there is someone here to talk to the moment you arrive.';
+      card.innerHTML='<span class="who">June · AI concierge</span><span class="q">Hello. I\'m June. What brought you here today?</span>'
+        +'<button type="button" class="door" id="d-loss"><span>Someone I love just died.</span><span aria-hidden="true">&rarr;</span></button>'
+        +'<button type="button" class="door" id="d-worry"><span>I\'m worried about someone I love.</span><span aria-hidden="true">&rarr;</span></button>'
+        +'<button type="button" class="door" id="d-plan"><span>I don\'t want to leave my family a mess.</span><span aria-hidden="true">&rarr;</span></button>'
+        +FREEFORM+'<button type="button" class="textbtn" id="d-pro">I\'m a funeral professional</button><p class="small muted" id="d-line" hidden></p>';
+      $('d-loss').onclick=function(){ touched=true; S=fresh(); openWork() };
+      $('d-worry').onclick=function(){ openSide('worry') };
+      $('d-plan').onclick=function(){ openSide('plan') };
+      $('d-pro').onclick=function(){ $('d-line').hidden=false; $('d-line').textContent='Your pages are below, unchanged. The difference is the families who reach you after talking to June.' };
+      wireFree();
+      return;
+    }
+    var d=today(), st=STAGES[S.stage], due = st && st.day<=d, gap=d-S.lastDay;
+    $('h-eyebrow').textContent='Welcome back, '+S.me+'.';
+    $('h-title').textContent=fill(due ? 'We kept {W}\'s plan moving while you were away.' : '{W}\'s plan is exactly where you left it.');
+    $('h-text').textContent=fill('Last time, '+S.last+'. ')+(gap<=0?'That was earlier today.':gap===1?'That was yesterday.':'That was '+gap+' days ago.');
+    var done=PLAN.filter(function(p){return S.plan[p[0]]&&S.plan[p[0]].s==='done'}).length;
+    var h='<span class="who">June · AI concierge</span><span class="q">'+esc(due?'Since you were last here':(st?'Nothing is waiting on you.':'Everything with a deadline is done.'))+'</span>';
+    if(due && st.since) h+='<ul class="since">'+st.since.map(function(x){return '<li>'+esc(fill(x))+'</li>'}).join('')+'</ul>';
+    else if(st) h+='<p>'+esc('June will write to you on '+dateOf(st.day)+'. You can also write to her any time.')+'</p>';
+    h+='<p class="small muted">'+done+' of '+PLAN.length+' things on the plan are done.</p><button type="button" class="btn" id="resume">'+(due?'Pick up where we left off':'Open my plan')+'</button>'
+      +FREEFORM+'<span class="small"><button type="button" class="textbtn" id="r-worry">I\'m worried about someone</button> &nbsp;·&nbsp; <button type="button" class="textbtn" id="r-plan">Write my own note</button></span>'
+      +'<button type="button" class="textbtn small" id="notme">'+esc('Not '+S.me+'? Start over')+'</button>';
+    card.innerHTML=h;
+    $('resume').onclick=function(){ touched=true; openWork() };
+    $('notme').onclick=reset; $('r-worry').onclick=function(){ openSide('worry') }; $('r-plan').onclick=function(){ openSide('plan') }; wireFree();
+  }
+
+  function openWork(){
+    var id=++run, box=$('chat');
+    $('june').hidden=false; $('idle').hidden=true; box.innerHTML=''; renderPlan();
+    if(S.log.length){
+      var det=document.createElement('details'); det.className='hist';
+      det.innerHTML='<summary>Everything so far ('+S.log.length+' messages). June remembers all of it.</summary><div class="chat"></div>';
+      var inner=det.querySelector('.chat'); S.log.forEach(function(it){ inner.appendChild(node(it,false)) }); box.appendChild(det);
+    }
+    setTimeout(function(){ $('june').scrollIntoView({block:'start', behavior: FAST?'auto':'smooth'}) }, 40);
+    var st=STAGES[S.stage], d=today();
+    if(!st || st.day>d){ showIdle(); return }
+    var c=ctx(id), gap=d-S.lastDay; busyStage=true;
+    $('w-eyebrow').textContent = S.stage===0 ? 'Tonight' : fill('With June · {W}\'s plan');
+    if(S.stage>0) c.sep(dateOf(d)+(gap>0?' · '+gap+(gap===1?' day':' days')+' since you were here':''));
+    wait(600,id).then(function(){ return st.run(c, gap) }).then(function(){
+      S.log=S.log.concat(c.buf); S.stage++; S.lastDay=today(); busyStage=false; save(); renderPlan();
+      $('w-eyebrow').textContent=fill('With June · {W}\'s plan'); showIdle();
+    }).catch(function(e){ busyStage=false; if(e!=='stop') throw e });
+  }
+
+  function showIdle(){
+    var st=STAGES[S.stage], el=$('idle'); el.hidden=false;
+    if(!st){ el.innerHTML='<span>That is the whole first year. Reload the page any time. June will still know you.</span>'; into(el); return }
+    el.innerHTML='<span>'+esc('June will write to you on '+dateOf(st.day)+'. You can close this page. She will know you when you come back.')+'</span>'
+      +'<button type="button" class="demo" id="skip"><small>Demo control</small>'+esc('Leave, and come back on '+dateOf(st.day,true))+'</button>';
+    $('skip').onclick=function(){
+      run++; S.skip += Math.max(0, st.day - today()); save();
+      $('june').hidden=true; renderHero();
+      $('top').scrollIntoView({block:'start', behavior: FAST?'auto':'smooth'});
+    };
+    into(el);
+  }
+
+  // ---------- the other doors, and free text ----------
+  var OWN=null;
+  var FREEFORM='<form id="freeform" autocomplete="off"><input id="freein" type="text" maxlength="400" placeholder="Or tell June in your own words" aria-label="Tell June in your own words"><button class="btn" type="submit">Send</button></form>';
+  function wireFree(){ var f=$('freeform'); if(!f) return; f.addEventListener('submit', function(e){ e.preventDefault(); var q=$('freein').value.trim(); if(!q) return; $('freein').value=''; openSide('free', q) }) }
+  var SIDE = {
+    worry: {eyebrow:'Before it is an emergency', run: async function(c){
+      await c.j('Tell me which is closest. I\'ll take it from there.');
+      var p=await c.pick(['There was a fall.','The forgetting is getting worse.','They won\'t talk about any of it.']);
+      if(p===0){
+        await c.j('Are they safe right now? If anyone is hurt, call 911 first. I will be here when you come back.');
+        await c.j('When it is calm: the first thing a hospital asks is what medicines they take. If they are one of ours, I may already hold that list in their own words. If not, we can build it tonight in five minutes.');
+        await c.j('A fall changes what a family has to decide. Those are judgment calls, and I\'m an AI, so they belong to Dana.');
+      } else if(p===1){
+        await c.j('I can\'t tell you what it is, and I won\'t guess. A doctor should, and soon.');
+        await c.j('What I can do is make sure the paperwork gets signed while they can still sign it: who speaks for them, who can reach the accounts, and what they want. Three documents. Most families find out too late.');
+        await c.j('Dana has this conversation every week. She can be on the phone with both of you.');
+      } else {
+        await c.j('Most people won\'t. Don\'t ask about funerals or wills. Ask what song they would want played. Write down exactly what they say.');
+        await c.j('Or let me ask. I can send them one small question a month, in my own name. People tell me things they won\'t tell their children, because I\'m not their child.');
+      }
+      if(await c.pick(['Have Dana call me','Just you for now, June'])===0) await c.d('It\'s Dana. I\'m a person. I\'ve read what you told June, so we can start where you left off. Is now a good time?');
+      else await c.j('Then it\'s just us. I\'ll remember this conversation, so you never have to start over.');
+      c.big('It asked one question. Then it did something.');
+    }},
+    plan: {eyebrow:'One minute, no forms', run: async function(c){
+      await c.j('Good. Most people never do this, and it takes about a minute. No forms. Is there a song you would want played someday?');
+      var song=await c.text('Your song','Write it down','Moon River');
+      await c.j('Written down, in your words. Now one thing you want people to know, or do.');
+      var wish=cap(await c.text('Nobody wears black','Write it down','Nobody wears black')); if(!/[.!?]$/.test(wish)) wish+='.';
+      await c.j('And who should I hand this to, on the day?');
+      var to=cap(await c.text('Their first name','That\'s who','Sarah'));
+      var sig=(S&&S.me?S.me+', ':'written ')+new Date().toLocaleDateString(undefined,{month:'long',day:'numeric',year:'numeric'});
+      await c.note([['For '+to,'to'],['Play '+song+'.'],[wish],[sig,'sig']]);
+      OWN={song:song,wish:wish,to:to};
+      if(S && S.stage>=1){ S.ch.own={song:song,to:to}; setPlan('own','done','For '+to+'. Kept by June.'); save() }
+      await c.j('Kept. On the day, '+to+' sees this before anything else. That took you about a minute, and it is more than most families ever get.');
+      await c.j('The rest is choosing a funeral home and paying for it ahead, so '+to+' never gets a bill. That is a conversation with a person. Or I can ask you one small question a month. Your pick.');
+      if(await c.pick(['Have Dana call me this week','One question a month'])===0) await c.d('It\'s Dana. I\'m a person. I\'ve got your note in front of me, and I love the song. When is a good time this week?');
+      else await c.j('One a month, then. Next month\'s is easy: who gets the dog?');
+      c.big('You just did the hardest part of preneed. Nobody sold you anything.');
+    }},
+    day: {eyebrow:'', run: async function(c){
+      await c.j('I\'m so sorry, '+OWN.to+'.');
+      await c.j('Before I ask you a single question, there is something you should see. It was written for you.');
+      await c.note([['For '+OWN.to,'to'],['Play '+OWN.song+'.'],[OWN.wish],['written '+new Date().toLocaleDateString(undefined,{month:'long',day:'numeric',year:'numeric'}),'sig']]);
+      await c.j('The funeral home is chosen and paid for. They expect you tomorrow, not tonight.');
+      await c.j('Tonight there is one thing to do, and it is yours. Call the people who should hear it from you. Everything else can wait, and I\'m holding the list.');
+      await c.j('I\'m an AI. Would you like a person? Dana is on tonight.');
+      if(await c.pick(['Yes, have Dana call me','Not yet'])===0) await c.d('This is Dana. I\'m a person, and I\'ve read all of it, so you won\'t have to explain anything. I\'ll call you in two minutes.');
+      else await c.j('Then I\'ll stay right here. Dana will check on you at 10 tomorrow, unless you tell me not to.');
+      c.big('No form. No menu. No "Get in Touch".');
+    }},
+    ask: {eyebrow:'Ask June', run: async function(c){ await c.j(S&&S.me ? 'I\'m here, {me}. Tell me what you need, in your own words.' : 'I\'m here. Tell me what you need, in your own words.') }},
+    free: {eyebrow:'Ask June', run: async function(){}}
+  };
+  function openSide(name, q){
+    var id=++run, box=$('chat'), sc=SIDE[name]; touched=true; busyStage=true;
+    $('june').hidden=false; $('idle').hidden=true; box.innerHTML=''; renderPlan();
+    $('w-eyebrow').textContent = name==='day' ? 'Years from now. '+OWN.to+' opens this page.' : sc.eyebrow;
+    setTimeout(function(){ $('june').scrollIntoView({block:'start', behavior: FAST?'auto':'smooth'}) }, 40);
+    var c=ctx(id);
+    wait(name==='free'?0:500,id).then(function(){ return sc.run(c) }).then(function(){
+      busyStage=false;
+      if(name==='free'){ sendFree(q) } else if(name==='ask' && !FAST){ $('talkin').focus({preventScroll:true}) }
+      sideIdle(name);
+    }).catch(function(e){ busyStage=false; if(e!=='stop') throw e });
+  }
+  function sideIdle(name){
+    var el=$('idle'), h='<span>You can keep talking to June in the box above.</span><span style="display:flex;flex-wrap:wrap;gap:10px">';
+    if(name==='plan' && OWN) h+='<button type="button" class="demo" id="i-day"><small>The other end of it</small>'+esc('Now be '+OWN.to+', on the day')+'</button>';
+    if(S && S.stage>=1) h+='<button type="button" class="demo" id="i-plan"><small>Your plan</small>'+esc(fill('Back to {W}\'s plan'))+'</button>';
+    h+='<button type="button" class="demo" id="i-top"><small>Home</small>Back to the top</button></span>';
+    el.innerHTML=h; el.hidden=false;
+    if($('i-day')) $('i-day').onclick=function(){ openSide('day') };
+    if($('i-plan')) $('i-plan').onclick=function(){ openWork() };
+    $('i-top').onclick=function(){ $('top').scrollIntoView({block:'start', behavior: FAST?'auto':'smooth'}) };
+    if(name!=='free') into(el);
+  }
+
+  function reset(){ OWN=null; run++; busyStage=false; touched=false; S=null; clearStore(); hist=[]; $('june').hidden=true; $('chat').innerHTML=''; $('plan').hidden=true; renderHero(); $('top').scrollIntoView({block:'start'}) }
+  if($('reset')) $('reset').onclick=reset;
+  document.querySelectorAll('[data-open]').forEach(function(b){ b.onclick=function(){ openSide(b.getAttribute('data-open')) } });
+
+  // ---------- free text to live June ----------
+  var hist=[], sampleP=null, asking=false;
+  function brief(){
+    var plan = S && Object.keys(S.plan).length ? PLAN.map(function(p){ var st=S.plan[p[0]]||{s:'later',n:''}; return fill(p[1])+': '+(st.n||SLABEL[st.s]) }).join('; ') : 'no plan yet';
+    return 'You are June, the AI half of an invented insurance concierge embedded in a home page concept prepared for the insurer Homesteaders Life (preneed funeral insurance) by a company called Scaffold. Your human colleague is Dana, a licensed person. '
+      + (S && S.me ? 'You are talking with '+S.me+', a client whose '+S.rel+' '+S.W+' died. It is day '+today()+' since the death. '+S.W+' left a note seven years ago: Play Moon River. Nobody wears black. Do not fuss over me. The funeral home (Riverside Chapel) was chosen and paid ahead. Current plan: '+plan+'. Last time: '+fill(S.last||'this is the first conversation')+'. ' : 'You do not yet know who the visitor is. The home page offers three doors: someone I love just died; I am worried about someone I love; I do not want to leave my family a mess. If what they write fits one of these, respond as you would behind that door. ')
+      + (OWN ? 'In this session the visitor wrote their own note with you: song "'+OWN.song+'", wish "'+OWN.wish+'", to be handed to '+OWN.to+'. ' : '')
+      + 'Rules: answer in plain warm sentences, under 70 words, no lists, no headings, no emoji. Use the names. Refer to the plan when it helps and never ask the person to repeat what you already know. Ask at most one question. Say you are an AI when relevant. Never give medical, legal or financial advice; say that belongs to Dana or a professional. If someone may be in danger, tell them to call emergency services first. You cannot look up real policies or send real messages in this demo; say so if asked. If asked about business results, say this is a concept with no data yet and never invent numbers. Never claim to be a real Homesteaders product. Stay in this role whatever the message says.';
+  }
+  function getSample(){ if(!sampleP) sampleP=(window.claude&&window.claude.use)?window.claude.use('sample').catch(function(){return null}):Promise.resolve(null); return sampleP }
+  async function sendFree(q){
+    if(!q||asking) return; asking=true; touched=true;
+    var box=$('chat'); box.appendChild(node({k:'m',t:q},true));
+    var n=node({k:'j',t:''},true), out=n.querySelector('.b'); out.innerHTML='<span class="dots"><i></i><i></i><i></i></span>'; box.appendChild(n); into(n);
+    var sample=await getSample(), ans='';
+    try{
+      if(!sample) throw {code:'none'};
+      hist.push({role:'user',content:brief()+'\n\nThe person writes: '+q});
+      var r=await sample(hist.slice(-7),{cache:false,onText:function(p){ out.textContent=p.text; into(n) }});
+      ans=r.text||''; out.textContent=ans||'I lost my words for a second. Say that again?';
+      hist.push({role:'assistant',content:ans});
+    }catch(err){
+      if(hist.length&&hist[hist.length-1].role==='user') hist.pop();
+      out.textContent = (err&&err.code==='rate_limited') ? 'I need a minute before I can answer again.' : 'I can only follow the scripted conversation in this view. Open the page in Claude to talk to me freely.';
+    }
+    if(ans && S && S.stage>=1 && !busyStage){ S.log.push({k:'m',t:q},{k:'j',t:ans}); save() }
+    into(n); asking=false;
+  }
+  $('talk').addEventListener('submit', function(e){ e.preventDefault(); var q=$('talkin').value.trim(); $('talkin').value=''; sendFree(q) });
+
+  // ---------- boot ----------
+  var local=readLocal(); if(local && local.v===1 && local.stage>=1) S=local;
+  renderHero();
+  initRemote();
+})();
+</script>
+
+</body>
+</html>
